@@ -1,6 +1,8 @@
 import { NavItem } from "../NavItem";
+import { useCartContext } from "../../hooks/useCartContext.ts";
 
 const Navbar = () => {
+  const { count } = useCartContext();
   const activeTabSyles = "underline underline-offset-4";
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
@@ -47,7 +49,7 @@ const Navbar = () => {
           </NavItem>
         </li>
 
-        <li>@@</li>
+        <li className="text-lg font-bold">🛒 {count}</li>
       </ul>
     </nav>
   );
