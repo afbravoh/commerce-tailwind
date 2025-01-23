@@ -1,8 +1,18 @@
 import { NavItem } from "../NavItem";
 import { useCartContext } from "../../hooks/useCartContext.ts";
+import { useMemo } from "react";
 
 const Navbar = () => {
-  const { count } = useCartContext();
+  const { cart } = useCartContext();
+
+  const totalItems = useMemo(
+    () =>
+      cart.reduce(
+        (previousValue, currentValue) => previousValue + currentValue.quantity,
+        0,
+      ),
+    [cart],
+  );
   const activeTabSyles = "underline underline-offset-4";
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
@@ -49,7 +59,7 @@ const Navbar = () => {
           </NavItem>
         </li>
 
-        <li className="text-lg font-bold">🛒 {count}</li>
+        <li className="text-lg font-bold">🛒 {totalItems}</li>
       </ul>
     </nav>
   );

@@ -1,7 +1,7 @@
 import { useCartContext } from "../../hooks/useCartContext";
 
 const ProductDetail = () => {
-  const { isOpenDetail, toogleOpenDetail, selectedProduct } = useCartContext();
+  const { isOpenDetail, toogleCloseDetail, selectedProduct } = useCartContext();
 
   return (
     <aside
@@ -9,7 +9,7 @@ const ProductDetail = () => {
     >
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">Detail</h2>
-        <button className="shadow-md" onClick={toogleOpenDetail}>
+        <button className="shadow-md" onClick={toogleCloseDetail}>
           ❌
         </button>
       </div>
@@ -21,9 +21,15 @@ const ProductDetail = () => {
         />
       </figure>
       <p className="flex flex-col p-6">
-        <span className="font-medium text-2xl mb-2">💲{selectedProduct.price}</span>
-        <span className="font-medium text-md mb-1">{selectedProduct.title}</span>
-        <span className="font-light text-sm">{selectedProduct.description}</span>
+        <span className="font-medium text-2xl mb-2">
+          💲{selectedProduct.price}
+        </span>
+        <span className="font-medium text-md mb-1">
+          {selectedProduct.title}
+        </span>
+        <span className="font-light text-sm">
+          {selectedProduct.description}
+        </span>
       </p>
     </aside>
   );
