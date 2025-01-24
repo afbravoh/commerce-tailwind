@@ -32,18 +32,6 @@ const Navbar = () => {
           </NavItem>
         </li>
 
-        <li>
-          <NavItem path="/account" isActiveStyles={activeTabSyles}>
-            Account
-          </NavItem>
-        </li>
-
-        <li>
-          <NavItem path="/login" isActiveStyles={activeTabSyles}>
-            Login
-          </NavItem>
-        </li>
-
         <li className="text-lg font-bold">🛒 {totalItems}</li>
       </ul>
     </nav>
