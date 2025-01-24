@@ -23,13 +23,13 @@ const MyOrder = () => {
         <p>
           <span>Articles</span>
         </p>
-        <p>{order.totalProducts}</p>
+        <p>{order?.totalProducts}</p>
       </div>
       <div className="flex justify-between items-center w-80">
         <p>
           <span>Total</span>
         </p>
-        <p>💲{order.totalOrder}</p>
+        <p>💲{order?.totalOrder}</p>
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import {
   createContext,
   Dispatch,
   MouseEvent,
+  ReactNode,
   SetStateAction,
   useEffect,
   useMemo,
@@ -47,7 +48,11 @@ export const CartContext = createContext<CartContextProps>(
   {} as CartContextProps,
 );
 
-export const CartProvider = ({ children }) => {
+interface CartProviderProps {
+  children: ReactNode;
+}
+
+export const CartProvider = ({ children }: CartProviderProps) => {
   const [products, setProducts] = useState<Product[]>([]);
 
   const [selectedProduct, setSelectedProduct] = useState<Product>(
