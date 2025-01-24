@@ -13,24 +13,26 @@ const ProductDetail = () => {
           ❌
         </button>
       </div>
-      <figure className="px-6">
-        <img
-          className="w-full h-full rounded-lg"
-          src={selectedProduct?.images?.[0]}
-          alt={selectedProduct.title}
-        />
-      </figure>
-      <p className="flex flex-col p-6">
-        <span className="font-medium text-2xl mb-2">
-          💲{selectedProduct.price}
-        </span>
-        <span className="font-medium text-md mb-1">
-          {selectedProduct.title}
-        </span>
-        <span className="font-light text-sm">
-          {selectedProduct.description}
-        </span>
-      </p>
+      <div className="flex flex-col overflow-y-scroll">
+        <figure className="px-6">
+          <img
+            className="w-full h-full rounded-lg"
+            src={selectedProduct?.image}
+            alt={selectedProduct.title}
+          />
+        </figure>
+        <p className="flex flex-col p-6">
+          <span className="font-medium text-2xl mb-2">
+            💲{selectedProduct.price}
+          </span>
+          <span className="font-medium text-md mb-1">
+            {selectedProduct.title}
+          </span>
+          <span className="font-light text-sm">
+            {selectedProduct.description}
+          </span>
+        </p>
+      </div>
     </aside>
   );
 };

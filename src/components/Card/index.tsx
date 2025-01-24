@@ -7,10 +7,16 @@ interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ product }) => {
-  const { toogleOpenDetail, setSelectedProduct, cart, handleAddProductToCart } =
-    useCartContext();
+  const {
+    toogleOpenDetail,
+    setSelectedProduct,
+    cart,
+    handleAddProductToCart,
+    toogleCloseCheckout,
+  } = useCartContext();
 
   const handleShowProduct = () => {
+    toogleCloseCheckout();
     setSelectedProduct(product);
     toogleOpenDetail();
   };
@@ -26,10 +32,10 @@ const Card: FC<CardProps> = ({ product }) => {
     >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
-          {product?.category?.name}
+          {product?.category}
         </span>
         <img
-          src={product?.images?.[0]}
+          src={product?.image}
           alt={product.title}
           className="w-full h-full object-cover rounded-lg"
         />
@@ -41,7 +47,7 @@ const Card: FC<CardProps> = ({ product }) => {
         </button>
       </figure>
       <p className="flex justify-between">
-        <span className="text-sm font-light">{product?.title}</span>
+        <span className="text-sm font-light truncate">{product?.title}</span>
         <span className="text-sm font-medium">💲{product?.price}</span>
       </p>
     </div>

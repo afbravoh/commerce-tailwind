@@ -3,15 +3,24 @@ import {
   Dispatch,
   MouseEvent,
   SetStateAction,
+  useEffect,
+  useMemo,
   useState,
 } from "react";
 import { Product } from "../types/product.type";
+import { Order } from "../types/order.type";
 
 interface CartContextProps {
   isOpenDetail: boolean;
   isOpenCheckout: boolean;
+
   selectedProduct: Product;
   cart: Product[];
+  orders: Order[];
+  filteredProducts: Product[];
+  search: string;
+  totalOrder: number;
+  totalProducts: number;
 
   toogleOpenDetail(): void;
 
@@ -26,7 +35,12 @@ interface CartContextProps {
 
   handleDelete(id: number): void;
 
+  handleEmptyCart(): void;
+
   setSelectedProduct: Dispatch<SetStateAction<Product>>;
+
+  setOrders: Dispatch<SetStateAction<Order[]>>;
+  setSearch: Dispatch<SetStateAction<string>>;
 }
 
 export const CartContext = createContext<CartContextProps>(
@@ -34,20 +48,43 @@ export const CartContext = createContext<CartContextProps>(
 );
 
 export const CartProvider = ({ children }) => {
-  const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false);
-  const [isOpenCheckout, setIsOpenCheckout] = useState<boolean>(false);
+  const [products, setProducts] = useState<Product[]>([]);
 
   const [selectedProduct, setSelectedProduct] = useState<Product>(
     {} as Product,
   );
 
   const [cart, setCart] = useState<Product[]>([]);
+
+  const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false);
+  const [isOpenCheckout, setIsOpenCheckout] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
+
+  const totalOrder = useMemo(
+    () => cart.reduce((prev, product) => prev + product.price, 0),
+    [cart],
+  );
+
+  const totalProducts = useMemo(
+    () => cart.reduce((prev, product) => prev + product.quantity, 0),
+    [cart],
+  );
+
+  const filteredProducts = useMemo(
+    () =>
+      search
+        ? [...products].filter((product) =>
+            product.title.toLowerCase().includes(search.toLowerCase()),
+          )
+        : [...products],
+    [search, products],
+  );
+
+  const [orders, setOrders] = useState<Order[]>([]);
   const toogleOpenDetail = () => setIsOpenDetail(true);
   const toogleCloseDetail = () => setIsOpenDetail(false);
-
   const toogleOpenCheckout = () => setIsOpenCheckout(true);
   const toogleCloseCheckout = () => setIsOpenCheckout(false);
-
   const handleAddProductToCart = (
     event: MouseEvent<HTMLButtonElement>,
     product: Product,
@@ -71,7 +108,6 @@ export const CartProvider = ({ children }) => {
     });
     toogleOpenCheckout();
   };
-
   const handleDelete = (id: number) => {
     setCart((cart) => {
       const product = cart.find((item) => item.id === id);
@@ -92,17 +128,32 @@ export const CartProvider = ({ children }) => {
       }
     });
   };
+  const handleEmptyCart = () => setCart([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((value) => value.json())
+      .then((data) => setProducts(data));
+  }, []);
 
   return (
     <CartContext.Provider
       value={{
+        filteredProducts,
         isOpenDetail,
         isOpenCheckout,
         selectedProduct,
         cart,
+        orders,
+        search,
+        totalOrder,
+        totalProducts,
         setSelectedProduct,
+        setOrders,
+        setSearch,
         handleAddProductToCart,
         handleDelete,
+        handleEmptyCart,
         toogleOpenDetail,
         toogleCloseDetail,
         toogleCloseCheckout,

@@ -19,28 +19,13 @@ const Navbar = () => {
       <ul className="flex items-center gap-3">
         <li className="font-semibold text-lg">
           <NavItem path="/" isActiveStyles={activeTabSyles}>
-            SHOOPI
-          </NavItem>
-        </li>
-        <li>
-          <NavItem path="/" isActiveStyles={activeTabSyles}>
-            All
-          </NavItem>
-        </li>
-        <li>
-          <NavItem path="/clothes" isActiveStyles={activeTabSyles}>
-            clothes
-          </NavItem>
-        </li>
-        <li>
-          <NavItem path="/electronics" isActiveStyles={activeTabSyles}>
-            electronics
+            Shoopi
           </NavItem>
         </li>
       </ul>
 
       <ul className="flex items-center gap-3">
-        <li className="text-black/60">some@stuff</li>
+        <li className="text-black/60">🎁🎀🛍️🎒</li>
         <li>
           <NavItem path="/my-orders" isActiveStyles={activeTabSyles}>
             My Orders
