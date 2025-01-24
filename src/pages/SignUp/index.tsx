@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { User } from "../../types/user.type";
-import { useLoginContext } from "../../hooks/useLoginContext.ts";
+import { User } from "../../types/user.type.ts";
+import { useLoginContext } from "../../hooks/useLoginContext";
 
-const Login = () => {
+const SignUp = () => {
   const [credentials, setCredentials] = useState<User>({
     username: "",
     pwd: "",
   });
 
-  const { handleLogin } = useLoginContext();
+  const { handleRegister } = useLoginContext();
 
   return (
     <>
       <div className="flex w-80 items-center relative justify-center mb-4">
-        <h1 className="font-medium text-xl">Login</h1>
+        <h1 className="font-medium text-xl">Sign Up</h1>
       </div>
-      <form id="login-form" className="flex flex-col items-center">
+      <form id="signUp-form" className="flex flex-col items-center">
         <input
           id="username"
           name="username"
@@ -45,21 +45,18 @@ const Login = () => {
         />
         <button
           type="submit"
-          form="login-form"
+          form="signUp-form"
           className="w-60 bg-black py-3 text-white rounded-lg"
-          onClick={(e) => {
-            e.preventDefault();
-            handleLogin(credentials);
-          }}
+          onClick={() => handleRegister(credentials)}
         >
-          Login
-        </button>
-        <a className="underline hover:font-bold" href="/signUp">
           Sign Up
+        </button>
+        <a className="underline hover:font-bold" href="/login">
+          Login
         </a>
       </form>
     </>
   );
 };
 
-export { Login };
+export { SignUp };
