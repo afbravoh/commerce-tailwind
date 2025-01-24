@@ -1,6 +1,6 @@
-import { Card } from "../components/Card";
-import { ProductDetail } from "../components/ProductDetail";
-import { useCartContext } from "../hooks/useCartContext";
+import { Card } from "../Card";
+import { ProductDetail } from "../ProductDetail";
+import { useCartContext } from "../../hooks/useCartContext";
 
 const ProductsList = () => {
   const { filteredProducts, search, setSearch } = useCartContext();

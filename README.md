@@ -1,50 +1,99 @@
-# React + TypeScript + Vite
+# 🛒 E-Commerce App with React, Tailwind, TypeScript, and Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Key Features
 
-Currently, two official plugins are available:
+- **Fetches data from an external API** 🌐
+- **Context API** for global state management 📦
+- **Shopping cart** with add and remove functionality 🛍️
+- **Fully functional checkout** ✅
+- **Login and registration** using `localStorage` 🔐
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React** ⚛️
+- **TypeScript** 🛡️
+- **Vite** ⚡
+- **Tailwind CSS** 🎨
+- **Context API** 📦
+- **LocalStorage** 🔐
+- **External API** 🌐
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🛠️ Steps to Run the Project
+
+### 1. 📥 Clone the repository
+
+```bash
+# Use git to clone the project
+git clone https://github.com/afbravoh/commerce-tailwind.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. 📂 Navigate to the project directory
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd your-repository
 ```
+
+### 3. 📦 Install dependencies
+
+```bash
+npm install
+```
+
+### 4. ▶️ Start the development server
+
+```bash
+npm run dev
+```
+
+- Open your browser and go to: [http://localhost:5173](http://localhost:5173)
+
+### 5. 🛑 Stop the server (optional)
+
+When you want to stop the server, press `Ctrl + C` in the terminal.
+
+---
+
+## 🌈 Project Structure
+
+```
+├── src
+│   ├── components    # Reusable components 🎨
+│   ├── context       # Context API for global state management 📦
+│   ├── pages         # Main pages (Home, Login, Checkout, etc.) 🗺️
+│   ├── styles        # Global styles with TailwindCSS ✨
+│   ├── hooks         # Hooks functions 🔧
+│   └── App.tsx       # Main entry point 🚪
+├── public            # Public assets 🌍
+├── .env              # Environment variables 🛠️
+├── package.json      # Dependencies and scripts 📜
+└── vite.config.ts    # Vite configuration ⚡
+```
+
+---
+
+## 🚧 Available Scripts
+
+- **Start the development server:**
+  ```bash
+  npm run dev
+  ```
+
+- **Build for production:**
+  ```bash
+  npm run build
+  ```
+
+- **Preview the build:**
+  ```bash
+  npm run preview
+  ```
+
+## 📝 Final Notes
+
+Thank you for using this app! If you have questions or suggestions, feel free to open an issue or contact me. 😄
+
+

@@ -1,4 +1,4 @@
-import { ProductsList } from "../../ProductsList";
+import { ProductsList } from "../../components/ProductsList";
 import { RedirectButton } from "../../components/RedirectButton";
 import { useLoginContext } from "../../hooks/useLoginContext";
 

@@ -57,9 +57,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const handleRegister = (credentials: User) => {
     if (!credentials.pwd || !credentials.username) return;
     setUsers([...users, credentials]);
-    setUser(credentials);
-    setIsLogged(true);
-    navigate("/");
+    navigate("/login");
   };
 
   return (
