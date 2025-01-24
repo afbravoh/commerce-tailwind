@@ -1,19 +1,26 @@
 import { NavItem } from "../NavItem";
-import { useCartContext } from "../../hooks/useCartContext.ts";
-import { useMemo } from "react";
+import { useCartContext } from "../../hooks/useCartContext";
+import { useLoginContext } from "../../hooks/useLoginContext";
 
 const Navbar = () => {
-  const { cart } = useCartContext();
+  const { totalProducts } = useCartContext();
+  const { isLogged, user, handleLogout } = useLoginContext();
 
-  const totalItems = useMemo(
-    () =>
-      cart.reduce(
-        (previousValue, currentValue) => previousValue + currentValue.quantity,
-        0,
-      ),
-    [cart],
-  );
   const activeTabSyles = "underline underline-offset-4";
+
+  const publicRoutes = [
+    { path: "/login", label: "Login" },
+    { path: "/signUp", label: "Sign Up" },
+  ];
+  const privateRoutes = [
+    {
+      path: "/my-orders",
+      label: "My Orders",
+    },
+  ];
+
+  const routesAvailable = isLogged ? privateRoutes : publicRoutes;
+
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
       <ul className="flex items-center gap-3">
@@ -23,16 +30,28 @@ const Navbar = () => {
           </NavItem>
         </li>
       </ul>
-
       <ul className="flex items-center gap-3">
-        <li className="text-black/60">🎁🎀🛍️🎒</li>
-        <li>
-          <NavItem path="/my-orders" isActiveStyles={activeTabSyles}>
-            My Orders
-          </NavItem>
-        </li>
-
-        <li className="text-lg font-bold">🛒 {totalItems}</li>
+        {routesAvailable.map((route) => (
+          <li>
+            <NavItem path={route.path} isActiveStyles={activeTabSyles}>
+              {route.label}
+            </NavItem>
+          </li>
+        ))}
+        {isLogged && (
+          <>
+            <li className="text-black/60 font-bold">
+              Welcome {user?.username}
+            </li>
+            <button
+              className="text-black/60 font-bold"
+              onClick={() => handleLogout()}
+            >
+              📴Logout
+            </button>
+            <li className="text-lg font-bold">🛒 {totalProducts}</li>
+          </>
+        )}
       </ul>
     </nav>
   );
